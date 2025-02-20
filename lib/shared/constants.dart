@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 const interStyle  = TextStyle(
   fontFamily: "Inter",
   fontSize: 14,
   fontWeight: FontWeight.w600
 );
+
+String formatDuration(Duration duration) {
+  final DateTime time = DateTime(0).add(duration);
+  return DateFormat('HH:mm:ss').format(time);
+}
 
 class AppButton extends StatelessWidget {
   const AppButton({super.key,  this.callback});

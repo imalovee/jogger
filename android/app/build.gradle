@@ -7,8 +7,9 @@ plugins {
 
 android {
     namespace = "com.example.jogging_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
+    // flutter.compileSdkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:jogging_app/features/screans/activity_screen.dart';
+import 'package:jogging_app/shared/Navigation/app_route.dart';
+import 'package:jogging_app/shared/Navigation/app_route_strings.dart';
 import 'package:jogging_app/shared/app_colors.dart';
 import 'package:jogging_app/shared/assets.dart';
 import 'package:jogging_app/shared/constants.dart';
@@ -33,10 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0.0,
         scrolledUnderElevation: 0,
        backgroundColor: AppColors.appColor, 
-       leading:  CircleAvatar(
-                    backgroundColor: Colors.brown,
-                    child: Icon(Icons.person),
-                  ),
+       leading:  Padding(
+         padding: const EdgeInsets.only(left: 7.0),
+         child: CircleAvatar(
+                      //backgroundColor: Colors.brown,
+                      backgroundImage: NetworkImage( "https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?q=80&w=2971&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",),
+                    ),
+       ),
          title:  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -186,58 +192,63 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(18.0),
               child: Column(
                 children: [
-                  Container(
-                        height: 65,
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                        decoration: BoxDecoration(
-                          color: AppColors.appColor,
-                          borderRadius:BorderRadius.circular(30)
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                        
-                        Image.asset(AppAssets.activityPng),
-                        SizedBox(width: 14,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Current Jogging', 
-                                 style: interStyle.copyWith(
-                                   fontWeight: FontWeight.w600,
-                                   fontSize: 14.spMin,
-                                   color: AppColors.scaffoldColor    
-                              ),),
-                             Text('01:09:44', 
-                                 style: interStyle.copyWith(
-                                   fontWeight: FontWeight.w400,
-                                   fontSize: 12.spMin,
-                                   color: AppColors.scaffoldColor
-                                 ),), 
-                          ],
-                        ),
-                        SizedBox(width: 54,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('10,9 km', 
-                                 style: interStyle.copyWith(
-                                   fontWeight: FontWeight.w600,
-                                   fontSize: 14.spMin,
-                                   color: AppColors.scaffoldColor    
-                              ),),
-                             Text('539 kcal', 
-                                 style: interStyle.copyWith(
-                                   fontWeight: FontWeight.w400,
-                                   fontSize: 12.spMin,
-                                   color: AppColors.scaffoldColor
-                                 ),), 
-                          ],
-                        ),
-                          ],
-                        ),
-                    
-                        ),
+                  GestureDetector(
+                    onTap: (){
+                      AppRoute.push(AppRouteStrings.activityScreen);
+                    },
+                    child: Container(
+                          height: 65,
+                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                          decoration: BoxDecoration(
+                            color: AppColors.appColor,
+                            borderRadius:BorderRadius.circular(30)
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                          
+                          Image.asset(AppAssets.activityPng),
+                          SizedBox(width: 14,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Current Jogging', 
+                                   style: interStyle.copyWith(
+                                     fontWeight: FontWeight.w600,
+                                     fontSize: 14.spMin,
+                                     color: AppColors.scaffoldColor    
+                                ),),
+                               Text('01:09:44', 
+                                   style: interStyle.copyWith(
+                                     fontWeight: FontWeight.w400,
+                                     fontSize: 12.spMin,
+                                     color: AppColors.scaffoldColor
+                                   ),), 
+                            ],
+                          ),
+                          SizedBox(width: 54,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('10,9 km', 
+                                   style: interStyle.copyWith(
+                                     fontWeight: FontWeight.w600,
+                                     fontSize: 14.spMin,
+                                     color: AppColors.scaffoldColor    
+                                ),),
+                               Text('539 kcal', 
+                                   style: interStyle.copyWith(
+                                     fontWeight: FontWeight.w400,
+                                     fontSize: 12.spMin,
+                                     color: AppColors.scaffoldColor
+                                   ),), 
+                            ],
+                          ),
+                            ],
+                          ),
+                      
+                          ),
+                  ),
                      SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

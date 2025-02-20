@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jogging_app/features/screans/activity_screen.dart';
 import 'package:jogging_app/features/screans/home_screen.dart';
 import 'package:jogging_app/features/screans/profle_screen.dart';
+import 'package:jogging_app/features/utils/bottom_nav_screen.dart';
 import 'package:jogging_app/shared/Navigation/app_route_strings.dart';
 
 class AppRoute {
@@ -18,12 +19,16 @@ static Route onGenerateRoute(RouteSettings settings){
 
       case AppRouteStrings.profileScreen:
       return CupertinoPageRoute(builder: (_){
-        return ProfleScreen();
+        return ProfileScreen();
       });
 
        case AppRouteStrings.activityScreen:
       return CupertinoPageRoute(builder: (_){
         return ActivityScreen();
+      });
+    case AppRouteStrings.navScreen:
+      return CupertinoPageRoute(builder: (_){
+        return BottomNavScreen();
       });
     default:
     return CupertinoPageRoute(builder: (_){
