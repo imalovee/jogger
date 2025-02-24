@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jogging_app/features/screans/activity_screen.dart';
+import 'package:jogging_app/features/utils/location.dart';
 import 'package:jogging_app/shared/Navigation/app_route.dart';
 import 'package:jogging_app/shared/Navigation/app_route_strings.dart';
 import 'package:jogging_app/shared/app_colors.dart';
@@ -14,22 +17,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = twoDigits(duration.inHours);
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return '$hours:$minutes:$seconds';
+  }
+
+  Duration _duration = Duration.zero;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      // bottomSheet: SafeArea(
-      //   child: Container(
-      //     color: Colors.white,
-      //     padding: const EdgeInsets.fromLTRB(20, 5, 20, 40),
-      //     child: const Column(
-      //       mainAxisSize: MainAxisSize.min,
-      //       children: [
-      //        AppButton()
-      //       ],
-      //     ),
-      //   ),
-      // ),
+
       appBar: AppBar(
         elevation: 0.0,
         scrolledUnderElevation: 0,
@@ -186,8 +187,20 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      AppRoute.push(AppRouteStrings.activityScreen);
+                    onTap: () async{
+                     UserLocation().getLocation();
+                     final Duration? runTime = await Navigator.push(
+                         context, CupertinoPageRoute(
+                         builder: (context){
+                           return ActivityScreen();
+                         }
+                     )
+                     );
+                     if(runTime != null){
+                       setState(() {
+                         _duration = runTime;
+                       });
+                     }
                     },
                     child: Container(
                       padding:
@@ -212,8 +225,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fontSize: 14.spMin,
                                     color: AppColors.scaffoldColor),
                               ),
+
                               Text(
-                                '01:09:44',
+                                _duration != null ? _formatDuration(_duration): '01:09:44',
                                 style: interStyle.copyWith(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 12.spMin,

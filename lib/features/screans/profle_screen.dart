@@ -3,7 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jogging_app/shared/app_colors.dart';
 import 'package:jogging_app/shared/assets.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +37,9 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(height: 50),
                     CircleAvatar(
                       radius: 45,
-                      backgroundImage: AssetImage('assets/profile.jpg'),
+                      backgroundImage: NetworkImage(
+                        "https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?q=80&w=2971&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      ),
                     ),
                     SizedBox(height: 10),
                     Text(

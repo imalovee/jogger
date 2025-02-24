@@ -168,7 +168,9 @@ class _ActivityScreenState extends State<ActivityScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CircularIconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: (){
+                return  Navigator.pop(context, _joggingDuration);
+      },
               icon: Icons.arrow_back_ios,
             ),
             const Text('Current Jogging'),
